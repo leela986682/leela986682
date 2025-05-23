@@ -1,0 +1,15 @@
+git config --global user.name "name"
+git config --global user.password "pass"
+
+git init
+git status
+git echo "#some random file for practice" >> gitPractice.txt
+git add .
+git commit -m "commiting first edit"
+git remote add origin <Your SSH path>
+git pull origin
+git add .
+git commit -m "succesfull"
+git push -u origin
+
+
