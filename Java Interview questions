@@ -1,0 +1,347 @@
+-----------Java Interview questions-----------
+
+What are the key features of Java?
+	
+	simple(no pointers,no operator overloading),
+	secure(doesn't allow manplation's on data directly)
+	object oriented(class object encapsulation inheritance polymorphism abstraction composition)
+	platform independent(2-step::portable.WORA)
+	muilt-threaded(Runnable :: video streams,online banking,parallel application)
+	high performance(JIT compiler)
+	robust(handel's exceptions with exception handling and manages memory with garbage collector)
+	
+Explain the differences between JDK, JRE, and JVM.
+	
+	JDK-->(key->compilation)Developing,compiling,running :: (JRE/Compiler/Debugger/jar tools/Javadoc)
+	JRE-->(key->execution)run java applications :: (JVM/Core Libraries/Runtime tools)
+	JVM-->(key->To native)into machine code the underlying os can execute (loads code/verify code/executes code/manage memory)
+
+Why is Java platform-independent?
+
+	2-step process execution .java and .class;
+	JVM converts compiled file to native language of OS.
+	that means JVM is platform dependent.
+
+What is the difference between == and .equals()?
+	
+	.equals compares content and if you want to compare object's 
+	data you need to override the equals method and along with it hashcode too;
+	== compares reference;
+	
+What is the difference between String, StringBuilder, and StringBuffer?
+	
+	String-->Immutable class(cannot be modified::creates new object),Thread safe bit slower,sutable for read only operations.
+	StringBuilder-->mutable can be modified non thread safe used for single threaded operations
+	StringBuffer-->mutable can be modified thread-safe sutable for muilt-threaded operations slower than sb.
+	
+What is the difference between compile-time and runtime polymorphism?
+
+	compile-time polymorphism(static binding)->faster(resolved at compile time so)method overloading no inheritance
+	run-time polymorphism(dynamic binding)->slower method overriding by inheritance object reference upcasting
+	
+Explain method overloading vs method overriding.
+	
+	method overloading->compile time polymorphism faster same signature diff parameters
+	method overriding->run time polymorphism slower same signature as super class upcasting to accuire(non-statics only)
+	
+What is a constructor? How is it different from a method?
+	
+	it is called automatically when an is object created
+	used to initialize instance variables
+	no return type / overloading supported
+	 
+Can a constructor be declared as final, static, or abstract?
+
+	no; final-> modifier that restrict the use of block outside the class but constructor not undergoes overriding 
+	so its pointless throws compilation error
+	static-> static means that block belongs to class rather-than a specific instance but here constructor work is 
+	to initialize instance variables not the class itself;
+	abstract->mean no implementation ->implementation was provided by implemented class but constructor doesn't 
+	undergoes overriding
+
+What are static methods and static variables?
+	belongs to class level and and shared across all objects and loads to static memory when class loads and have default's
+
+-----------Object-Oriented Programming (OOPs)-----------
+
+What are the four main principles of OOPs?
+	
+	Class/Object
+	Encapsulation
+	Abstraction
+	Polymorphism
+	Inheritance
+	
+What is encapsulation? Provide an example.
+	
+	private can't but aces's buy calling its methods
+	ex-> u can check ur exm results but you cant modify it
+	 
+What is inheritance? Explain types of inheritance in Java.
+	
+	acquiring parent class /super class behaviour's (methods)[polymorphism].
+	single inheritance,
+	muilti-level inheritance,
+	hierarchical inheritance,
+	multiple inheritance.
+	  	 
+What is abstraction? How is it implemented in Java?
+	
+	hiding implemented details and showing only essential details
+	Using interface's and abstract classe's.
+	
+What is an interface, and how is it different from an abstract class?
+	
+	100% abstraction-constants-constructor not allowed
+	
+Can we extend multiple classes in Java? Why?
+
+	No,Because;ambiguity and complexity caused by diamond problem
+
+What is method overriding, and what are its rules?
+
+	Runtime polymorphism and enhance the behavior of parent class methods
+	not possible for{static/private/final-methods}
+	return type must be same 
+
+What is the super keyword? How is it used?
+	
+	it holds the super class reference;
+	you can call super class constructor using super() inside the current class constructor
+	super.methodname()->to call super class method
+	super.fieldname->to access super class fields;
+
+What is the this keyword?
+	
+	holds current class reference/helps to initialize instance variables when there is a variable shadowing;
+	
+What is a final class, and can it be inherited?
+
+	No,it cannot be inherited(Immutable classes);
+	
+-----------Exception Handling-----------
+
+What is exception handling? Why is it needed?
+	
+	An exception is a unexpected event that occurs during execution of program
+	such as; Arithmetic Exception
+			 FileNotFound Exception
+			 NullPointer Exception
+			 ArrayIndexOutOfBounds Exception
+			 ClassNotFound Exception
+			 IO Exception
+			 SQL Exception..........etc
+	by using exception handling we can avoid abnormal termination of program
+	it ensures resources are released properly (auto close of connection's)
+	two types of exception are there checked exceptions unchecked exceptions
+	exception handling can be carried using try-catch-finally and throw-throws
+	checked exceptions are compile time exceptions->FileNotFound/SQL/ClassNotFound
+	unchecked are run time exceptions->NullPointerException/ArrayIndexOutOfBounds/Arithmetic Exceptions
+	when a methods throws an exception you need to use try-catch clause when you are calling that method;
+	to throw exception explicitly we use throw if the explicit exception is user defined then it should extends exceptions class
+	 
+What is the difference between throw and throws?
+	
+	throw is used to throw an exception explicitly
+	throws declares exception that a method may throws to the caller
+	if it come's to checked exception you need to use throws with throw
+	when it is a unchecked exception you don't need throws
+	
+What is the difference between checked and unchecked exceptions?
+
+	checked exceptions checked at compile time.
+	compiler forces to handle them using try-catch or throws
+	unchecked exceptions are not checked at compile time
+	(This are raised at run time by logical errors)
+	not forced to handle this exceptions 
+
+What is a finally block? When is it executed?
+	
+	this is used with try-catch clause when you want print an output or 
+	do some specific thing with respect to exception you will mention in this block
+	when ever the try-catch executed this will execute along with them even there is a return statement
+	in the try or catch blocks it returns only after executing finally block;
+	 
+Can we have multiple catch blocks? How do they work?
+	
+	yes,you can write try with multiple catch clause 
+	and when a exception arises the jvm checks catch block that matches the exception 
+	when it found the correct match it skips the all other clauses 
+	
+Can a try block exist without a catch block?
+	
+		yes, if finally used with it try block is used with catch or finally block it doesn't used singly
+		
+What happens if an exception is not handled?
+	
+	program terminates  abnormally
+	then the exception propagated up the call stack to the method that called it
+	and displays error message
+	--->exception type,name,line,call stack;
+
+Explain custom exceptions with an example.
+	
+	User-defined exceptions are created by extending exception class for checked-Exceptions
+	and RunTimeException class for unchecked exceptions
+	 
+-----------Collections Framework-----------
+
+What is the difference between ArrayList and LinkedList?
+	
+	ArrayList based on index's and linkedList holds the references of consequtive elements
+	both classes are implements list interface the difference between them is performance data structure and usage
+	the underlying data structure of arraylist is dynamic array(resizable array)->faster for random acess(index based)
+	and underlying data structure in linkelist is doubly linked list (nodes/pointer's)->for manipulations like insertion and deletion
+	    
+Explain the differences between HashMap, LinkedHashMap, and TreeMap.
+
+	All implements map interface but they differ in order of elements/performance
+	hashmap->uses hashtable/no insertion order/one null value allowed as key
+	linkedhashmap->extends hashmapand and uses linked list to maintain order/as inserted/one null as key
+	treemap->uses red-black tree(self balancing binary search tree)/sorted order/no null keys allowed
+	
+What is the difference between HashSet and TreeSet?
+	
+	both implements set interface
+	hashset use's hashtable internally->no order of elements/prefer'd for fast access if order not required/one null
+	treeset use's red-black bt internally->sorted based on comparator/prefer'd for sorted data required/not allows null
+	
+Explain fail-fast and fail-safe iterators.
+
+	fail-fast-->throws concurrentModificationException when we try to modify the collection in side iterator.
+	fail-slow-->performs operation on copy of data so it supports modification but slower than fail-fast
+	 
+What is the purpose of the Iterator and ListIterator interfaces?
+	
+	Iterators are used to transver's through the collection without exposing their internal structure.(forward-transver's-only).
+	ListIterator are used for both forward and backward transver's.
+	 
+How does a HashMap work internally?
+	
+	hashmap-->{Bucket []buckets-->{Node<k,v> []node-->{Node has key value hashofkey and reference of next node(usefull when there occurs a collison)}}}
+	parllel'y the hashing mechanism converts key's into hashcode and further converts them into index's to store them in the buckets based on index's 
+	the formal used in hashing mechanism is index==>(hashcode)% array size 
+	if there is a collision occurs during hashing process it use's linkedlist to resolve ea'rly but now it uses red-black binary search tree (java8)
+	
+What is the difference between Comparable and Comparator?
+
+	comparable->natural sorting order of objects class itself provides default sorting order
+	int compareTo(obj o)-->return this.id-o.id;-->[0 if same/>0 current obj is large/<0 current obj is small];
+	comparator->define custom sorting order logic outside the class
+	int compare(obj o1,obj o2)-->return o1.name.compareTo(o2.name)
+	
+What is the difference between Vector and ArrayList?
+	
+	Arraylist-->50% grow's/faster/non thread-safe
+	Vector-->100% grow's/slower/thread-safe
+	
+What is the significance of HashCode and equals() methods in collections?
+	
+	equals method returns boolean based on objects
+	and hash helps to sort the list based on our required thing
+	
+What is the difference between synchronized and concurrent collections?
+
+-----------Multi-threading-----------
+What is multi-threading in Java?
+	
+	Multi-threading in java is a process of executing two or more threads concurrently to perform multiple tasks
+	improving the performance and efficiency of program(parallel execution)
+	Multi-threading is a subset of multi-tasking
+	
+Explain the difference between Thread and Runnable.
+		
+		Thread is a class where as 	Runnable is a interface;
+		When you use Runnable interface you need to implement run method must where as in thread you can override if you want too.
+		if it is thread then you can directly start a thread by creating thread object or thread extended class object if there are two or more.
+		but in runnable you need to pass runnable object as a parameter to the thread class.	
+	
+How can we create a thread in Java?
+	
+	Thread t1 = new Thread();t1.start()-->calls run method internally and it executes run method if it is override'd.
+	
+What is a synchronized(this) block?
+	
+	thread safety it controls access to a shared resource by allowing only one thread to execute the block at a time.
+	
+What is the difference between wait() and sleep()?
+	
+	wait()-->make current thread wait and release's lock on the block and waits until the other thread notify.
+	sleep()-->pause execution temporarily without releasing any locks.
+	
+Explain notify() and notifyAll() methods.
+	
+	notify()-->releases only the thread which called wait on the same object's monitor lock before calling notify.
+	notifyAll()-->wakes up all threads waiting on the object's monitor lock.
+	
+What is a deadlock? How can it be avoided?
+	
+	both threads locked themselve's.
+	
+What is a thread pool, and why is it used?
+	
+	A tread pool is a collection of pre-instantiated reusable threads that are managed and controlled by a java executor framework
+	Instead of creating and destroying threads for every task a thread pool reuses existing threads for every task.
+	
+What is the difference between Callable and Runnable?
+
+	Runnable run method is void where as callable has a return type and also throws exception.
+	Runnable is used with thread object and executorservice
+	where as callable is used only with executorservice
+What is the volatile keyword?
+-------------------------------------------------------
+6. Java 8 Features
+What are functional interfaces? Provide examples.
+What is a lambda expression? How is it used?
+What is the Stream API? Provide examples of its usage.
+Explain the Optional class and its methods.
+What is the difference between map() and flatMap() in streams?
+What is the default method in interfaces?
+What are method references? Provide examples.
+What is the purpose of the forEach() method in streams?
+What is the Predicate interface? Provide examples.
+Explain the Collectors class in Java 8.
+7. JDBC (Java Database Connectivity)
+What is JDBC? Why is it used?
+Explain the steps to connect to a database using JDBC.
+What is the difference between Statement and PreparedStatement?
+What is a ResultSet? How do you use it?
+What is SQL injection? How can it be prevented?
+Explain the purpose of a connection pool.
+What is the role of the DriverManager class?
+What is the difference between a forward-only and scrollable ResultSet?
+Explain batch processing in JDBC.
+What is the purpose of the CallableStatement?
+8. Advanced Java (Servlets & JSP)
+What is the lifecycle of a servlet?
+What is the difference between doGet() and doPost() methods?
+What is a session in Java? How is it maintained?
+What is the difference between RequestDispatcher and sendRedirect?
+Explain the concept of cookies and session tracking.
+What is a JSP? How is it different from a servlet?
+What are JSP directives? Provide examples.
+What is the role of implicit objects in JSP?
+What is a servlet filter? Provide examples.
+How do you handle file uploads in servlets?
+9. Design Patterns
+What is a design pattern? Why is it used?
+Explain the Singleton design pattern with examples.
+What is a Factory design pattern? Provide code examples.
+Explain the Observer design pattern.
+What is the difference between Strategy and Template patterns?
+What is Dependency Injection (DI)?
+What is MVC architecture? Explain with examples.
+What is the Builder pattern? How is it implemented?
+Explain the Proxy pattern and its use cases.
+What is the Command pattern? Provide examples.
+10. Miscellaneous Topics
+What is the transient keyword?
+What is serialization, and how does it work in Java?
+What is the volatile keyword? How is it different from synchronized?
+What is garbage collection? How does it work?
+What is the difference between heap and stack memory?
+What is the Reflection API?
+What are annotations in Java? Provide examples.
+What is the assert keyword?
+Explain the concept of memory leaks in Java.
+What is the try-with-resources statement?
